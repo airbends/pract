@@ -1,0 +1,79 @@
+num = int(input("Enter a number: "))
+original = num
+digit_sum = 0
+
+while num > 0:
+    digit_sum += num % 10
+    num //= 10
+
+print(f"Sum of digits of {original} is {digit_sum}")
+
+
+
+
+
+num = int(input("Enter a number: "))
+original = num
+power = len(str(num))
+result = 0
+
+while num > 0:
+    digit = num % 10
+    result += digit ** power
+    num //= 10
+
+if result == original:
+    print(f"{original} is an Armstrong number.")
+else:
+    print(f"{original} is not an Armstrong number.")
+
+
+
+
+
+
+num = int(input("Enter a number: "))
+total = 0
+
+for i in range(1, num):
+    if num % i == 0:
+        total += i
+
+if total == num:
+    print(f"{num} is a perfect number.")
+else:
+    print(f"{num} is not a perfect number.")
+
+
+
+
+
+
+
+
+
+x = int(input("Enter base (X): "))
+y = int(input("Enter power (Y): "))
+result = x ** y
+print(f"{x}^{y} = {result}")
+
+
+
+
+
+
+num = int(input("Enter a number: "))
+original = str(num)
+reversed_num = original[::-1]
+
+if original == reversed_num:
+    print(f"{num} is a palindrome.")
+else:
+    print(f"{num} is not a palindrome.")
+
+
+num = int(input("Enter a number: "))
+last = num % 10
+first = int(str(num)[0])
+total = first + last
+print(f"Sum of first and last digit of {num} is {total}")
