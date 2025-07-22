@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+class Area
+{
+    public void area(int r)
+    {
+        double a = 3.14 * r * r;
+        System.out.println("Area of Circle = " + a);
+    }
+
+    public void area(int b, int h)
+    {
+        double a = 0.5 * b * h;
+        System.out.println("Area of Triangle = " + a);
+    }
+
+    public void area(double l, double w)
+    {
+        double a = l * w;
+        System.out.println("Area of Rectangle = " + a);
+    }
+
+    public static void main(String args[])
+    {
+        Area ob = new Area();
+        ob.area(5);
+        ob.area(6, 3);
+        ob.area(4.0, 2.5);
+    }
+}
