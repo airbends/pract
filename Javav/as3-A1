@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+class Circle
+{
+  double r;
+
+  Circle(double r)
+  {
+    this.r = r;
+  }
+
+  double area()
+  {
+    return 3.14 * r * r;
+  }
+}
+
+class Cylinder extends Circle
+{
+  double h;
+
+  Cylinder(double r,double h)
+  {
+    super(r);
+    this.h = h;
+  }
+
+  double area()
+  {
+    double base = super.area();
+    return (2 * 3.14 * r * h) + (2 * base);
+  }
+}
+
+class ShapeMain
+{
+  public static void main(String args[])
+  {
+    double r = Double.parseDouble(args[0]);
+    double h = Double.parseDouble(args[1]);
+
+    Circle c = new Circle(r);
+    System.out.println("Area of Circle = "+c.area());
+
+    Cylinder cy = new Cylinder(r,h);
+    System.out.println("Area of Cylinder = "+cy.area());
+  }
+}
