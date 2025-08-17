@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+class Student
+{
+    int rno;
+    String name;
+    int mark1, mark2;
+
+    Student(int rno, String name, int mark1, int mark2)
+    {
+        this.rno = rno;
+        this.name = name;
+        this.mark1 = mark1;
+        this.mark2 = mark2;
+    }
+
+    class Result
+    {
+        int total;
+        double per;
+
+        Result()
+        {
+            total = mark1 + mark2;
+            per = total / 2.0;
+        }
+
+        void display()
+        {
+            System.out.println("Roll No: " + rno);
+            System.out.println("Name: " + name);
+            System.out.println("Mark1: " + mark1);
+            System.out.println("Mark2: " + mark2);
+            System.out.println("Total: " + total);
+            System.out.println("Percentage: " + per);
+        }
+    }
+}
+
+class StudentMain
+{
+    public static void main(String args[])
+    {
+        int r = Integer.parseInt(args[0]);
+        String n = args[1];
+        int m1 = Integer.parseInt(args[2]);
+        int m2 = Integer.parseInt(args[3]);
+
+        Student s = new Student(r, n, m1, m2);
+        Student.Result res = s.new Result();
+        res.display();
+    }
+}
+
