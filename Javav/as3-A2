@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+interface Shape
+{
+   double area();
+}
+
+class Circle implements Shape
+{
+   final double PI = 3.14;
+   double r;
+
+   Circle(double r)
+   {
+     this.r = r;
+   }
+
+   public double area()
+   {
+     return PI * r * r;
+   }
+}
+
+class Sphere implements Shape
+{
+   final double PI = 3.14;
+   double r;
+
+   Sphere(double r)
+   {
+     this.r = r;
+   }
+
+   public double area()
+   {
+     return 4 * PI * r * r;
+   }
+}
+
+class ShapeMain
+{
+   public static void main(String args[])
+   {
+     double r = Double.parseDouble(args[0]);
+
+     Circle c = new Circle(r);
+     Sphere s = new Sphere(r);
+
+     System.out.println("Area of Circle = "+c.area());
+     System.out.println("Area of Sphere = "+s.area());
+   }
+}
