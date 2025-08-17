@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.*;
+
+class Cricket
+{
+  int pid;
+  String pname;
+  int totalRuns, InningsPlayed, NotOuttimes;
+  double avg;
+
+   Cricket(int pid,String pname,int totalRuns,int InningsPlayed,int NotOuttimes)
+   {
+     this.pid = pid;
+     this.pname = pname;
+     this.totalRuns = totalRuns;
+     this.InningsPlayed = InningsPlayed;
+     this.NotOuttimes = NotOuttimes;
+     if(InningsPlayed - NotOuttimes != 0)
+        avg = (double)totalRuns / (InningsPlayed - NotOuttimes);
+     else
+        avg = 0;
+   }
+
+   void display()
+   {
+     System.out.println(pid+" "+pname+" "+totalRuns+" "+InningsPlayed+" "+NotOuttimes+" Avg="+avg);
+   }
+}
+
+class CricketMain
+{
+  public static void main(String args[])
+  {
+    int n = Integer.parseInt(args[0]);
+    Cricket c[] = new Cricket[n];
+    int k=1;
+
+     for(int i=0;i<n;i++)
+     {
+        int id = Integer.parseInt(args[k]);
+        String name = args[k+1];
+        int runs = Integer.parseInt(args[k+2]);
+        int inn = Integer.parseInt(args[k+3]);
+        int notout = Integer.parseInt(args[k+4]);
+
+        c[i] = new Cricket(id,name,runs,inn,notout);
+        k += 5;
+     }
+
+     double max = c[0].avg;
+     int pos=0;
+     for(int i=1;i<n;i++)
+     {
+       if(c[i].avg > max)
+       {
+         max = c[i].avg;
+         pos = i;
+       }
+     }
+
+     System.out.println("Player with Maximum Average:");
+     c[pos].display();
+  }
+}
