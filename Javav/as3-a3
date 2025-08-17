@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+interface Integer
+{
+   void check(int n);
+}
+
+class MyNumber implements Integer
+{
+   public void check(int n)
+   {
+      if(n >= 0)
+        System.out.println("Positive");
+      else
+        System.out.println("Negative");
+   }
+}
+
+class NumberMain
+{
+   public static void main(String args[])
+   {
+      int no = Integer.parseInt(args[0]);
+      MyNumber m = new MyNumber();
+      m.check(no);
+   }
+}
