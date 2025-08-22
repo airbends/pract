@@ -1,0 +1,55 @@
+s = {5, 12, 3, 19, 7}
+print("Max:", max(s))
+print("Min:", min(s))
+
+
+
+t = (1, 2, 3)
+t = t + (4,)
+print(t)
+
+
+
+
+
+t = ('H', 'e', 'l', 'l', 'o')
+print("".join(t))
+
+
+
+
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+print(a & b)
+
+
+
+
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+print(a | b)
+
+
+
+
+
+
+d = {"a": 1, "b": 2, "c": 3}
+k = input("Enter key: ")
+print("Exists" if k in d else "Not exists")
+
+
+
+d = {"a": 1, "b": 2, "c": 3}
+k = input("Enter key: ")
+print("Exists" if k in d else "Not exists")
+
+
+
+d = {"a": 3, "b": 1, "c": 2}
+asc = dict(sorted(d.items(), key=lambda x: x[1]))
+desc = dict(sorted(d.items(), key=lambda x: x[1], reverse=True))
+print("Ascending:", asc)
+print("Descending:", desc)
+
+
