@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+class ListMain
+{
+  public static void main(String args[])
+  {
+    LinkedList<String> list=new LinkedList<String>();
+    list.add("CPP");
+    list.add("Java");
+    list.add("Python");
+    list.add("PHP");
+
+    System.out.println("Forward:");
+    Iterator it=list.iterator();
+    while(it.hasNext())
+      System.out.println(it.next());
+
+    System.out.println("Reverse:");
+    ListIterator li=list.listIterator(list.size());
+    while(li.hasPrevious())
+      System.out.println(li.previous());
+  }
+}
