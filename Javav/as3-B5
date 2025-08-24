@@ -1,0 +1,47 @@
+package game;
+import java.io.*;
+import java.util.*;
+
+public class Indoor
+{
+  String player;
+  public Indoor(){ player="Unknown"; }
+  public Indoor(String player){ this.player=player; }
+  public void display(){ System.out.println("Indoor Player: "+player); }
+}
+
+
+
+
+
+
+package game;
+import java.io.*;
+import java.util.*;
+
+public class Outdoor
+{
+  String player;
+  public Outdoor(){ player="Unknown"; }
+  public Outdoor(String player){ this.player=player; }
+  public void display(){ System.out.println("Outdoor Player: "+player); }
+}
+
+
+
+
+
+
+import game.*;
+
+class GameMain
+{
+  public static void main(String args[])
+  {
+    Indoor in=new Indoor("Chess Player");
+    Outdoor out=new Outdoor("Football Player");
+
+    in.display();
+    out.display();
+  }
+}
