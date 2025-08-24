@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+
+class Employee
+{
+  private int id;
+  private String name,dept;
+  private double sal;
+
+  Employee(){ id=0; name=""; dept=""; sal=0; }
+
+  Employee(int id,String name,String dept,double sal)
+  {
+    this.id=id; this.name=name; this.dept=dept; this.sal=sal;
+  }
+
+  double getSalary(){ return sal; }
+
+  void display(){ System.out.println(id+" "+name+" "+dept+" "+sal); }
+}
+
+class Manager extends Employee
+{
+  private double bonus;
+
+  Manager(int id,String name,String dept,double sal,double bonus)
+  {
+    super(id,name,dept,sal);
+    this.bonus=bonus;
+  }
+
+  double totalSalary(){ return getSalary()+bonus; }
+
+  void display()
+  {
+    super.display();
+    System.out.println("Bonus="+bonus+" Total="+totalSalary());
+  }
+}
+
+class ManagerMain
+{
+  public static void main(String args[])
+  {
+    int n=Integer.parseInt(args[0]);
+    Manager m[]=new Manager[n];
+    int k=1;
+
+    for(int i=0;i<n;i++)
+    {
+      int id=Integer.parseInt(args[k]);
+      String nm=args[k+1];
+      String d=args[k+2];
+      double s=Double.parseDouble(args[k+3]);
+      double b=Double.parseDouble(args[k+4]);
+      m[i]=new Manager(id,nm,d,s,b);
+      k+=5;
+    }
+
+    int pos=0;
+    double max=m[0].totalSalary();
+    for(int i=1;i<n;i++)
+    {
+      if(m[i].totalSalary()>max){ max=m[i].totalSalary(); pos=i; }
+    }
+
+    System.out.println("Manager with Max Total Salary:");
+    m[pos].display();
+  }
+}
