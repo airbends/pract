@@ -1,24 +1,23 @@
 import java.io.*;
 import java.util.*;
 
-class ListMain
+class HashMain
 {
   public static void main(String args[])
   {
-    LinkedList<String> list=new LinkedList<String>();
-    list.add("CPP");
-    list.add("Java");
-    list.add("Python");
-    list.add("PHP");
+    Hashtable<String,Double> ht=new Hashtable<String,Double>();
+    ht.put("Aman",50000.0);
+    ht.put("Ravi",60000.0);
+    ht.put("Neha",55000.0);
 
-    System.out.println("Forward:");
-    Iterator it=list.iterator();
-    while(it.hasNext())
-      System.out.println(it.next());
+    System.out.println("All Employees:");
+    for(Map.Entry e:ht.entrySet())
+      System.out.println(e.getKey()+" "+e.getValue());
 
-    System.out.println("Reverse:");
-    ListIterator li=list.listIterator(list.size());
-    while(li.hasPrevious())
-      System.out.println(li.previous());
+    String search=args[0];
+    if(ht.containsKey(search))
+      System.out.println(search+" Salary="+ht.get(search));
+    else
+      System.out.println("Employee not found");
   }
 }
