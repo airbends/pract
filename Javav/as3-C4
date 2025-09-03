@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+
+interface Shape
+{
+  double area();
+}
+
+class Rectangle implements Shape
+{
+  double l,w;
+  Rectangle(double l,double w){ this.l=l; this.w=w; }
+  public double area(){ return l*w; }
+}
+
+class Square extends Rectangle
+{
+  Square(double side){ super(side,side); }
+}
+
+class Circle implements Shape
+{
+  double r;
+  Circle(double r){ this.r=r; }
+  public double area(){ return 3.14*r*r; }
+}
+
+class ShapeMain
+{
+  public static void main(String args[])
+  {
+    Rectangle r=new Rectangle(4,6);
+    Square s=new Square(5);
+    Circle c=new Circle(3);
+
+    System.out.println("Rectangle Area="+r.area());
+    System.out.println("Square Area="+s.area());
+    System.out.println("Circle Area="+c.area());
+  }
+}
+
+/*
+cmd steps:
+javac ShapeMain.java
+java ShapeMain
+*/
