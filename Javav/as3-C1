@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+class CityHash
+{
+  public static void main(String args[])
+  {
+    Hashtable<String,String> ht=new Hashtable<String,String>();
+    ht.put("Pune","020");
+    ht.put("Mumbai","022");
+    ht.put("Delhi","011");
+
+    System.out.println("All Cities:");
+    for(Map.Entry e:ht.entrySet())
+      System.out.println(e.getKey()+" -> "+e.getValue());
+
+    String search=args[0];
+    if(ht.containsKey(search))
+      System.out.println("STD of "+search+" = "+ht.get(search));
+    else
+      System.out.println("City not found");
+  }
+}
+
+/*
+cmd steps:
+javac CityHash.java
+java CityHash Mumbai
+*/
