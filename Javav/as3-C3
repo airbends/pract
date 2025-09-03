@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+abstract class Staff
+{
+  String name,address;
+  Staff(String n,String a){ name=n; address=a; }
+  abstract void display();
+}
+
+class FullTimeStaff extends Staff
+{
+  String dept;
+  double sal;
+  FullTimeStaff(String n,String a,String d,double s)
+  {
+    super(n,a); dept=d; sal=s;
+  }
+  void display()
+  {
+    System.out.println(name+" "+address+" "+dept+" "+sal);
+  }
+}
+
+class PartTimeStaff extends Staff
+{
+  int hrs; double rate;
+  PartTimeStaff(String n,String a,int h,double r)
+  {
+    super(n,a); hrs=h; rate=r;
+  }
+  void display()
+  {
+    System.out.println(name+" "+address+" "+hrs+" "+rate);
+  }
+}
+
+class StaffMain
+{
+  public static void main(String args[])
+  {
+    Staff s[]=new Staff[2];
+    s[0]=new FullTimeStaff("Ravi","Pune","IT",50000);
+    s[1]=new PartTimeStaff("Neha","Mumbai",20,300);
+
+    for(int i=0;i<s.length;i++) s[i].display();
+  }
+}
+
+/*
+cmd steps:
+javac StaffMain.java
+java StaffMain
+*/
