@@ -1,0 +1,140 @@
+class CountInt
+{
+  public static void main(String args[])
+  {
+    System.out.println("Total Integers = "+args.length);
+  }
+}
+
+/*
+cmd:
+javac CountInt.java
+java CountInt 10 20 30 40
+*/
+
+
+
+
+
+
+
+class InvalidAgeException extends Exception
+{
+  InvalidAgeException(String m){ super(m); }
+}
+
+class Vote
+{
+  public static void main(String args[])
+  {
+    try
+    {
+      int age=Integer.parseInt(args[0]);
+      if(age<18) throw new InvalidAgeException("Not Eligible for Voting");
+      System.out.println("Eligible for Voting");
+    }
+    catch(NumberFormatException e){ System.out.println("Invalid Input"); }
+    catch(InvalidAgeException e){ System.out.println(e.getMessage()); }
+  }
+}
+
+/*
+cmd:
+javac Vote.java
+java Vote 16
+*/
+
+
+
+
+
+
+
+import java.io.*;
+
+class FileSize
+{
+  public static void main(String args[]) throws Exception
+  {
+    File f=new File(args[0]);
+    if(f.exists()) System.out.println("File Size = "+f.length()+" bytes");
+    else System.out.println("File not found");
+  }
+}
+
+/*
+cmd:
+javac FileSize.java
+java FileSize myfile.txt
+*/
+
+
+
+
+
+
+
+
+class ZeroException extends Exception
+{ ZeroException(String m){ super(m);} }
+
+class Palindrome
+{
+  public static void main(String args[])
+  {
+    try
+    {
+      int n=Integer.parseInt(args[0]);
+      if(n==0) throw new ZeroException("Number is Zero");
+      int temp=n,rev=0;
+      while(temp>0){ rev=rev*10+temp%10; temp/=10; }
+      if(n==rev) System.out.println("Palindrome");
+      else System.out.println("Not Palindrome");
+    }
+    catch(NumberFormatException e){ System.out.println("Number is Invalid"); }
+    catch(ZeroException e){ System.out.println(e.getMessage()); }
+  }
+}
+
+/*
+cmd:
+javac Palindrome.java
+java Palindrome 121
+*/
+
+
+
+
+
+
+
+
+
+class OutOfRangeException extends Exception
+{ OutOfRangeException(String m){ super(m);} }
+
+class DigitSum
+{
+  static int sumDigits(int n)
+  {
+    int s=0; while(n>0){ s+=n%10; n/=10; } return s;
+  }
+
+  public static void main(String args[])
+  {
+    try
+    {
+      int n=Integer.parseInt(args[0]);
+      if(n>100) throw new OutOfRangeException("Number is out of Range");
+      System.out.println("Sum of Digits = "+sumDigits(n));
+    }
+    catch(NumberFormatException e){ System.out.println("Invalid Number"); }
+    catch(OutOfRangeException e){ System.out.println(e.getMessage()); }
+  }
+}
+
+/*
+cmd:
+javac DigitSum.java
+java DigitSum 89
+*/
