@@ -1,0 +1,186 @@
+def rev(s):
+    if len(s) == 0:
+        return s
+    return rev(s[1:]) + s[0]
+
+s = input("Enter string: ")
+print(rev(s))
+
+
+
+
+
+
+
+
+def power(x, y):
+    return x ** y
+
+x = int(input("Enter X: "))
+y = int(input("Enter Y: "))
+print(power(x, y))
+
+
+
+
+
+
+
+
+def check(s1, s2):
+    u = set(s1) | set(s2)
+    i = set(s1) & set(s2)
+    return u, i
+
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+u, i = check(s1, s2)
+print("Union:", u)
+print("Intersection:", i)
+
+
+
+
+
+
+
+
+def sum_digits(n):
+    if n == 0:
+        return 0
+    return n % 10 + sum_digits(n // 10)
+
+n = int(input("Enter number: "))
+print(sum_digits(n))
+
+
+
+
+
+
+
+
+def evens(n):
+    for i in range(2, n+1, 2):
+        yield i
+
+n = int(input("Enter limit: "))
+for v in evens(n):
+    print(v, end=" ")
+
+
+
+
+
+
+
+
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a+b
+
+n = int(input("Enter terms: "))
+for v in fib(n):
+    print(v, end=" ")
+
+
+
+
+
+
+
+
+import math
+
+def cylinder_area(r, h):
+    return 2*math.pi*r*(r+h)
+
+def cylinder_vol(r, h):
+    return math.pi*r*r*h
+
+def cuboid_area(l, w, h):
+    return 2*(l*w + w*h + l*h)
+
+def cuboid_vol(l, w, h):
+    return l*w*h
+
+print("Cylinder area:", cylinder_area(3, 5))
+print("Cylinder volume:", cylinder_vol(3, 5))
+print("Cuboid area:", cuboid_area(2, 3, 4))
+print("Cuboid volume:", cuboid_vol(2, 3, 4))
+
+
+
+
+
+
+
+
+def convert(n):
+    print("Binary:", bin(n)[2:])
+    print("Octal:", oct(n)[2:])
+
+n = int(input("Enter decimal number: "))
+convert(n)
+
+
+
+
+
+
+
+
+def squares():
+    d = {}
+    for i in range(1, 21):
+        d[i] = i*i
+    print(d)
+
+squares()
+
+
+
+
+
+
+
+
+def primes(n):
+    for i in range(2, n+1):
+        for j in range(2, int(i**0.5)+1):
+            if i % j == 0:
+                break
+        else:
+            yield i
+
+n = int(input("Enter limit: "))
+for v in primes(n):
+    print(v, end=" ")
+
+
+
+
+
+
+
+
+class Duck:
+    def quack(self):
+        print("Quack Quack")
+
+class Person:
+    def quack(self):
+        print("I can quack like a duck!")
+
+def call_quack(obj):
+    obj.quack()
+
+d = Duck()
+p = Person()
+call_quack(d)
+call_quack(p)
+
+
+
