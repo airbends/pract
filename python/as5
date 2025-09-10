@@ -1,0 +1,187 @@
+class Student:
+    def __init__(self, roll, name, m1, m2, m3):
+        self.roll = roll
+        self.name = name
+        self.marks = [m1, m2, m3]
+
+    def percentage(self):
+        return sum(self.marks) / 3
+
+students = []
+while True:
+    ch = input("Enter choice (add/delete/show/exit): ")
+    if ch == "add":
+        r = int(input("Roll No: "))
+        n = input("Name: ")
+        m1 = int(input("Marks1: "))
+        m2 = int(input("Marks2: "))
+        m3 = int(input("Marks3: "))
+        students.append(Student(r, n, m1, m2, m3))
+    elif ch == "delete":
+        r = int(input("Enter roll to delete: "))
+        students = [s for s in students if s.roll != r]
+    elif ch == "show":
+        for s in students:
+            print(s.roll, s.name, s.marks, "Percentage:", s.percentage())
+    elif ch == "exit":
+        break
+
+
+
+
+
+
+
+
+class Circle:
+    def __init__(self, x, y, r):
+        self.center = (x, y)
+        self.radius = r
+
+x = int(input("Enter x center: "))
+y = int(input("Enter y center: "))
+r = int(input("Enter radius: "))
+c = Circle(x, y, r)
+print("Circle center:", c.center, "Radius:", c.radius)
+
+
+
+
+
+
+
+
+class StringClass:
+    def get_String(self):
+        self.s = input("Enter string: ")
+    def print_String(self):
+        print(self.s.upper())
+        print(" ".join(self.s.split()[::-1]).lower())
+
+obj = StringClass()
+obj.get_String()
+obj.print_String()
+
+
+
+
+
+
+
+
+class Complex:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def __add__(self, other):
+        return Complex(self.a + other.a, self.b + other.b)
+    def __str__(self):
+        return f"{self.a}+{self.b}i"
+
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+print(c1 + c2)
+
+
+
+
+
+
+
+
+class Rectangle:
+    def __init__(self, l, w, h):
+        self.l = l
+        self.w = w
+        self.h = h
+    def area(self):
+        return self.l * self.w
+    def volume(self):
+        return self.l * self.w * self.h
+
+r = Rectangle(3, 4, 5)
+print("Area:", r.area())
+print("Volume:", r.volume())
+
+
+
+
+
+
+
+
+def pt_in_circle(circle, point):
+    (x, y), r = circle
+    (px, py) = point
+    return (x - px) ** 2 + (y - py) ** 2 == r ** 2
+
+print(pt_in_circle(((0,0), 5), (3,4)))
+print(pt_in_circle(((0,0), 5), (1,1)))
+
+
+
+
+
+
+
+
+class Subset:
+    def __init__(self, s):
+        self.s = s
+    def get_subsets(self):
+        res = [[]]
+        for num in self.s:
+            res += [x + [num] for x in res]
+        return res
+
+obj = Subset([1,2,3])
+print(obj.get_subsets())
+
+
+
+
+
+
+
+
+class Repeat:
+    def __init__(self, s):
+        self.s = s
+    def __mul__(self, n):
+        return self.s * n
+
+s = input("Enter string: ")
+n = int(input("Enter number: "))
+r = Repeat(s)
+print(r * n)
+
+
+
+
+
+
+
+
+class Calculator:
+    def add(self, a, b): return a+b
+    def sub(self, a, b): return a-b
+    def mul(self, a, b): return a*b
+    def div(self, a, b): return a/b if b!=0 else "Undefined"
+
+c = Calculator()
+print("Add:", c.add(5,2))
+print("Sub:", c.sub(5,2))
+print("Mul:", c.mul(5,2))
+print("Div:", c.div(5,2))
+
+
+
+
+
+
+
+
+import datetime
+now = datetime.datetime.now()
+print("Current:", now)
+print("Day of week:", now.strftime("%A"))
