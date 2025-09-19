@@ -1,48 +1,28 @@
-class CountInt
-{
-  public static void main(String args[])
-  {
-    System.out.println("Total Integers = "+args.length);
-  }
-}
+import java.io.*;
+import java.util.*;
 
-/*
-cmd:
-javac CountInt.java
-java CountInt 10 20 30 40
-*/
-
-
-
-
-
-
-
-class InvalidAgeException extends Exception
-{
-  InvalidAgeException(String m){ super(m); }
-}
-
-class Vote
-{
-  public static void main(String args[])
-  {
-    try
-    {
-      int age=Integer.parseInt(args[0]);
-      if(age<18) throw new InvalidAgeException("Not Eligible for Voting");
-      System.out.println("Eligible for Voting");
+class CopyFile {
+    public static void main(String args[]) throws Exception {
+        FileReader fr = new FileReader("source.txt");
+        FileWriter fw = new FileWriter("target.txt");
+        int ch;
+        while ((ch = fr.read()) != -1) {
+            char c = (char) ch;
+            if (Character.isDigit(c)) {
+                fw.write('*');
+            } else if (Character.isUpperCase(c)) {
+                fw.write(Character.toLowerCase(c));
+            } else if (Character.isLowerCase(c)) {
+                fw.write(Character.toUpperCase(c));
+            } else {
+                fw.write(c);
+            }
+        }
+        fr.close();
+        fw.close();
     }
-    catch(NumberFormatException e){ System.out.println("Invalid Input"); }
-    catch(InvalidAgeException e){ System.out.println(e.getMessage()); }
-  }
 }
 
-/*
-cmd:
-javac Vote.java
-java Vote 16
-*/
 
 
 
@@ -51,56 +31,20 @@ java Vote 16
 
 
 import java.io.*;
+import java.util.*;
 
-class FileSize
-{
-  public static void main(String args[]) throws Exception
-  {
-    File f=new File(args[0]);
-    if(f.exists()) System.out.println("File Size = "+f.length()+" bytes");
-    else System.out.println("File not found");
-  }
-}
-
-/*
-cmd:
-javac FileSize.java
-java FileSize myfile.txt
-*/
-
-
-
-
-
-
-
-
-class ZeroException extends Exception
-{ ZeroException(String m){ super(m);} }
-
-class Palindrome
-{
-  public static void main(String args[])
-  {
-    try
-    {
-      int n=Integer.parseInt(args[0]);
-      if(n==0) throw new ZeroException("Number is Zero");
-      int temp=n,rev=0;
-      while(temp>0){ rev=rev*10+temp%10; temp/=10; }
-      if(n==rev) System.out.println("Palindrome");
-      else System.out.println("Not Palindrome");
+class AsciiFile {
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        FileWriter fw = new FileWriter("ascii.txt");
+        for (int i = 0; i < s.length(); i++) {
+            fw.write((int) s.charAt(i) + "\n");
+        }
+        fw.close();
     }
-    catch(NumberFormatException e){ System.out.println("Number is Invalid"); }
-    catch(ZeroException e){ System.out.println(e.getMessage()); }
-  }
 }
 
-/*
-cmd:
-javac Palindrome.java
-java Palindrome 121
-*/
 
 
 
@@ -108,33 +52,211 @@ java Palindrome 121
 
 
 
+import java.io.*;
+import java.util.*;
 
+class SmallException extends Exception {
+    SmallException(String msg) { super(msg); }
+}
+class BigException extends Exception {
+    BigException(String msg) { super(msg); }
+}
 
-class OutOfRangeException extends Exception
-{ OutOfRangeException(String m){ super(m);} }
-
-class DigitSum
-{
-  static int sumDigits(int n)
-  {
-    int s=0; while(n>0){ s+=n%10; n/=10; } return s;
-  }
-
-  public static void main(String args[])
-  {
-    try
-    {
-      int n=Integer.parseInt(args[0]);
-      if(n>100) throw new OutOfRangeException("Number is out of Range");
-      System.out.println("Sum of Digits = "+sumDigits(n));
+class Factorial {
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if (n < 5) throw new SmallException("Number is small");
+        else if (n > 10) throw new BigException("Number is Greater");
+        else {
+            int f = 1;
+            for (int i = 1; i <= n; i++) f *= i;
+            System.out.println("Factorial: " + f);
+        }
     }
-    catch(NumberFormatException e){ System.out.println("Invalid Number"); }
-    catch(OutOfRangeException e){ System.out.println(e.getMessage()); }
-  }
 }
 
-/*
-cmd:
-javac DigitSum.java
-java DigitSum 89
-*/
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class ReverseFile {
+    public static void main(String args[]) throws Exception {
+        RandomAccessFile f = new RandomAccessFile("input.txt", "r");
+        long len = f.length();
+        for (long i = len - 1; i >= 0; i--) {
+            f.seek(i);
+            System.out.print((char) f.read());
+        }
+        f.close();
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class ReverseWords {
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            StringTokenizer st = new StringTokenizer(line);
+            while (st.hasMoreTokens()) {
+                String w = st.nextToken();
+                StringBuilder sb = new StringBuilder(w);
+                System.out.println(sb.reverse());
+            }
+        }
+        br.close();
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class DeleteTxtFiles {
+    public static void main(String args[]) {
+        for (String name : args) {
+            File f = new File(name);
+            if (f.exists() && f.getName().endsWith(".txt")) {
+                f.delete();
+            } else if (f.exists()) {
+                System.out.println("Name: " + f.getName());
+                System.out.println("Location: " + f.getAbsolutePath());
+                System.out.println("Size: " + f.length());
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class ShowTxtFiles {
+    public static void main(String args[]) {
+        File dir = new File(args[0]);
+        File list[] = dir.listFiles();
+        for (File f : list) {
+            if (f.getName().endsWith(".txt")) {
+                System.out.println(f.getName());
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class CountFile {
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        int lines = 0, words = 0, chars = 0;
+        String line;
+        while ((line = br.readLine()) != null) {
+            lines++;
+            chars += line.length();
+            StringTokenizer st = new StringTokenizer(line);
+            words += st.countTokens();
+        }
+        System.out.println("Lines: " + lines);
+        System.out.println("Words: " + words);
+        System.out.println("Chars: " + chars);
+        br.close();
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class ReverseCase {
+    public static void main(String args[]) throws Exception {
+        FileReader fr = new FileReader("input.txt");
+        int ch;
+        while ((ch = fr.read()) != -1) {
+            char c = (char) ch;
+            if (Character.isLetter(c)) {
+                if (Character.isUpperCase(c)) System.out.print(Character.toLowerCase(c));
+                else System.out.print(Character.toUpperCase(c));
+            } else if (Character.isDigit(c)) {
+                System.out.println("Digit: " + c);
+            } else if (Character.isWhitespace(c)) {
+                System.out.println("Space");
+            } else {
+                System.out.print(c);
+            }
+        }
+        fr.close();
+    }
+}
+
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class InvalidData extends Exception {
+    InvalidData(String msg) { super(msg); }
+}
+
+class Validate {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String pan = sc.next();
+        String mobile = sc.next();
+        try {
+            if (!pan.matches("[A-Z]{5}[0-9]{4}[A-Z]{1}"))
+                throw new InvalidData("Invalid PAN");
+            if (!mobile.matches("[0-9]{10}"))
+                throw new InvalidData("Invalid Mobile");
+            System.out.println("Valid: " + pan + " " + mobile);
+        } catch (InvalidData e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
