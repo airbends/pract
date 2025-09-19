@@ -1,0 +1,149 @@
+class MyException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+try:
+    raise MyException("This is a custom exception")
+except MyException as e:
+    print(e.message)
+
+
+
+
+
+
+
+
+def oops():
+    raise IndexError("This is an IndexError")
+
+def catcher():
+    try:
+        oops()
+    except IndexError as e:
+        print("Caught:", e)
+
+catcher()
+
+
+
+
+
+
+
+
+class MyError(Exception):
+    def __init__(self, message, data):
+        self.message = message
+        self.data = data
+
+def oops():
+    raise MyError("This is MyError", 101)
+
+def catcher():
+    try:
+        oops()
+    except IndexError as e:
+        print("Caught IndexError:", e)
+    except MyError as e:
+        print("Caught MyError:", e.message, "Extra Data:", e.data)
+
+catcher()
+
+
+
+
+
+
+
+
+class invalidDateException(Exception):
+    pass
+
+class Date:
+    def __init__(self, d, m, y):
+        if not (1 <= d <= 31 and 1 <= m <= 12 and y > 0):
+            raise invalidDateException("Invalid Date Entered")
+        self.d, self.m, self.y = d, m, y
+    def show(self):
+        print(f"{self.d}-{self.m}-{self.y}")
+
+try:
+    d = int(input("Enter day: "))
+    m = int(input("Enter month: "))
+    y = int(input("Enter year: "))
+    date = Date(d,m,y)
+    date.show()
+except invalidDateException as e:
+    print(e)
+
+
+
+
+
+
+
+
+try:
+    f = open("test.txt", "r")
+    for line in f:
+        try:
+            val = eval(line.strip())
+            if isinstance(val, int):
+                print(val, "is Integer")
+            elif isinstance(val, float):
+                print(val, "is Float")
+            elif isinstance(val, str):
+                print(val, "is String")
+        except Exception:
+            print("Invalid data:", line.strip())
+    f.close()
+except FileNotFoundError:
+    print("File not found")
+
+
+
+
+
+
+
+
+import sys, traceback
+
+def safe(func, *args):
+    try:
+        func(*args)
+    except Exception:
+        exc_type, exc_value, _ = sys.exc_info()
+        print("Error:", exc_type, exc_value)
+        traceback.print_exc()
+
+def oops():
+    raise MyError("MyError occurred", 202)
+
+safe(oops)
+
+
+
+
+
+
+
+
+class MyError(Exception):
+    def __init__(self, message, data):
+        self.message = message
+        self.data = data
+
+def oops():
+    raise MyError("This is MyError", 303)
+
+def catcher():
+    try:
+        oops()
+    except IndexError as e:
+        print("Caught IndexError:", e)
+    except MyError as e:
+        print("Caught MyError:", e.message, "Extra Data:", e.data)
+
+catcher()
