@@ -1,1 +1,190 @@
+class Team:
+    def show_team(self):
+        print("This is Team class")
+
+class Dev(Team):
+    def show_dev(self):
+        print("This is Dev class")
+
+obj = Dev()
+obj.show_team()
+obj.show_dev()
+
+
+
+
+
+
+
+
+class TeamMember:
+    def show_member(self):
+        print("I am a team member")
+
+class TeamLeader:
+    def show_leader(self):
+        print("I am a team leader")
+
+class Project(TeamMember, TeamLeader):
+    def show_project(self):
+        print("This is a project")
+
+p = Project()
+p.show_member()
+p.show_leader()
+p.show_project()
+
+
+
+
+
+
+
+
+class A: pass
+class B(A): pass
+
+a = A()
+b = B()
+print(issubclass(B, A))
+print(isinstance(b, B))
+print(isinstance(b, A))
+
+
+
+
+
+
+
+
+class University:
+    def uni_name(self):
+        print("SPPU")
+
+class Course(University):
+    def course_name(self):
+        print("BBA-CA")
+
+c = Course()
+c.uni_name()
+c.course_name()
+
+
+
+
+
+
+
+
+class Area:
+    def calc(self):
+        pass
+
+class Square(Area):
+    def calc(self, side):
+        print("Square area:", side*side)
+
+class Triangle(Area):
+    def calc(self, b, h):
+        print("Triangle area:", 0.5*b*h)
+
+s = Square()
+t = Triangle()
+s.calc(5)
+t.calc(4,6)
+
+
+
+
+
+
+
+
+class Shape:
+    def area(self):
+        return 0
+    def volume(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, length):
+        self.length = length
+    def area(self):
+        return self.length**2
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+    def area(self):
+        return 3.14*self.r*self.r
+
+sq = Square(4)
+ci = Circle(3)
+print("Square area:", sq.area())
+print("Circle area:", ci.area())
+
+
+
+
+
+
+
+
+class Country:
+    def print_nationality(self):
+        print("Nationality: Indian")
+
+class State(Country):
+    def print_state(self):
+        print("State: Maharashtra")
+    def print_all(self):
+        self.print_nationality()
+        self.print_state()
+        print("Country: India")
+
+s = State()
+s.print_all()
+
+
+
+
+
+
+
+
+class A:
+    def show(self):
+        print("Class A method")
+
+class B:
+    def show(self):
+        print("Class B method")
+
+class C(A,B):
+    def show(self):
+        print("Class C method")
+
+obj = C()
+obj.show()
+
+
+
+
+
+
+
+
+class Engine:
+    def start(self):
+        print("Engine started")
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()
+    def drive(self):
+        self.engine.start()
+        print("Car is moving")
+
+c = Car()
+c.drive()
 
