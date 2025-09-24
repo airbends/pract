@@ -1,0 +1,395 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def show_alert():
+    messagebox.showinfo("Alert", "Button was pressed")
+
+root = tk.Tk()
+btn = tk.Button(root, text="Press Me", command=show_alert)
+btn.pack(pady=20)
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+import itertools
+
+root = tk.Tk()
+colors = itertools.cycle(["red", "green", "blue", "yellow"])
+
+def change_color():
+    root.configure(bg=next(colors))
+    root.after(1000, change_color)
+
+change_color()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+from tkinter import font
+
+root = tk.Tk()
+lbl = tk.Label(root, text="Hello Tkinter")
+lbl.pack(pady=20)
+
+def change_style():
+    lbl.config(font=("Times New Roman", 20, "bold"))
+
+btn = tk.Button(root, text="Change Font", command=change_style)
+btn.pack(pady=10)
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+root = tk.Tk()
+txt = tk.Text(root, height=5, width=30)
+txt.pack()
+
+txt.insert("1.0", "World")
+txt.insert("1.0", "Hello ")
+
+def modify_text():
+    txt.delete("1.0")
+    txt.delete("end-2c")
+
+btn = tk.Button(root, text="Modify Text", command=modify_text)
+btn.pack(pady=10)
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+import math
+
+def calc():
+    r = float(e1.get())
+    h = float(e2.get())
+    area = 2*math.pi*r*(r+h)
+    vol = math.pi*r*r*h
+    lbl.config(text=f"Area: {area:.2f}, Volume: {vol:.2f}")
+
+root = tk.Tk()
+tk.Label(root, text="Radius").pack()
+e1 = tk.Entry(root)
+e1.pack()
+tk.Label(root, text="Height").pack()
+e2 = tk.Entry(root)
+e2.pack()
+btn = tk.Button(root, text="Calculate", command=calc)
+btn.pack(pady=10)
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def to_upper():
+    lbl.config(text=e.get().upper())
+
+root = tk.Tk()
+e = tk.Entry(root)
+e.pack()
+btn = tk.Button(root, text="Uppercase", command=to_upper)
+btn.pack()
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+from datetime import date
+
+def calc_age():
+    dob = e.get().split("/")
+    d, m, y = map(int, dob)
+    today = date.today()
+    age = today.year - y - ((today.month, today.day) < (m, d))
+    lbl.config(text=f"Age: {age}")
+
+root = tk.Tk()
+tk.Label(root, text="DOB (dd/mm/yyyy)").pack()
+e = tk.Entry(root)
+e.pack()
+btn = tk.Button(root, text="Calculate Age", command=calc_age)
+btn.pack(pady=10)
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def alter_text():
+    s = e.get()
+    s = "".join("?" if c.isdigit() else c.swapcase() if c.isalpha() else "*" if c==" " else c for c in s)
+    lbl.config(text=s)
+
+root = tk.Tk()
+e = tk.Entry(root, width=40)
+e.pack()
+btn = tk.Button(root, text="Alter", command=alter_text)
+btn.pack()
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+import time
+
+def update_time():
+    lbl.config(text=time.strftime("%H:%M:%S"))
+    lbl.after(1000, update_time)
+
+root = tk.Tk()
+lbl = tk.Label(root, font=("Arial", 30))
+lbl.pack()
+update_time()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+import random
+import string
+
+def gen_password():
+    chars = string.ascii_letters
+    pwd = "".join(random.choice(chars) for _ in range(8))
+    lbl.config(text=pwd)
+
+root = tk.Tk()
+btn = tk.Button(root, text="Generate Password", command=gen_password)
+btn.pack(pady=20)
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def show_digits():
+    mapping = {"0":"Zero","1":"One","2":"Two","3":"Three","4":"Four","5":"Five","6":"Six","7":"Seven","8":"Eight","9":"Nine"}
+    n = e.get()
+    lbl.config(text=" ".join(mapping[d] for d in n))
+
+root = tk.Tk()
+e = tk.Entry(root)
+e.pack()
+btn = tk.Button(root, text="Show Digits", command=show_digits)
+btn.pack()
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def convert():
+    n = int(e.get())
+    lbl.config(text=f"Binary: {bin(n)[2:]}, Octal: {oct(n)[2:]}, Hex: {hex(n)[2:]}")
+
+root = tk.Tk()
+e = tk.Entry(root)
+e.pack()
+btn = tk.Button(root, text="Convert", command=convert)
+btn.pack()
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def show_item():
+    sel = lb.curselection()
+    if sel:
+        print("Selected:", lb.get(sel[0]))
+
+def delete_item():
+    sel = lb.curselection()
+    if sel:
+        lb.delete(sel[0])
+
+root = tk.Tk()
+lb = tk.Listbox(root)
+lb.pack()
+for i in ["Apple", "Banana", "Cherry"]:
+    lb.insert("end", i)
+btn1 = tk.Button(root, text="Print", command=show_item)
+btn1.pack()
+btn2 = tk.Button(root, text="Delete", command=delete_item)
+btn2.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def set_color(c):
+    root.configure(bg=c)
+
+root = tk.Tk()
+menubar = tk.Menu(root)
+colors = tk.Menu(menubar, tearoff=0)
+for c in ["red","green","blue","yellow"]:
+    colors.add_command(label=c, command=lambda col=c: set_color(col))
+menubar.add_cascade(label="Colors", menu=colors)
+root.config(menu=menubar)
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def check():
+    n = int(e.get())
+    res = []
+    if n > 1 and all(n%i!=0 for i in range(2, n)):
+        res.append("Prime")
+    if sum(i for i in range(1, n) if n%i==0) == n:
+        res.append("Perfect")
+    if sum(int(d)**len(str(n)) for d in str(n)) == n:
+        res.append("Armstrong")
+    lbl.config(text=", ".join(res) if res else "None")
+
+root = tk.Tk()
+e = tk.Entry(root)
+e.pack()
+btn = tk.Button(root, text="Check", command=check)
+btn.pack()
+lbl = tk.Label(root, text="")
+lbl.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def apply_style():
+    font = []
+    if var1.get(): font.append("bold")
+    if var2.get(): font.append("italic")
+    lbl.config(font=("Times New Roman", 20, " ".join(font)))
+
+root = tk.Tk()
+lbl = tk.Label(root, text="Sample Text")
+lbl.pack()
+var1 = tk.IntVar()
+var2 = tk.IntVar()
+c1 = tk.Checkbutton(root, text="Bold", variable=var1, command=apply_style)
+c1.pack()
+c2 = tk.Checkbutton(root, text="Italic", variable=var2, command=apply_style)
+c2.pack()
+root.mainloop()
+
+
+
+
+
+
+
+
+import tkinter as tk
+
+def calculate():
+    try:
+        res.set(eval(e.get()))
+    except:
+        res.set("Error")
+
+root = tk.Tk()
+e = tk.Entry(root)
+e.pack()
+res = tk.StringVar()
+lbl = tk.Label(root, textvariable=res)
+lbl.pack()
+btn = tk.Button(root, text="Calculate", command=calculate)
+btn.pack()
+root.mainloop()
