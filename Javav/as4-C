@@ -1,0 +1,164 @@
+// Q1 - DeleteTxt.java
+import java.io.*;
+
+class DeleteTxt
+{
+  public static void main(String args[])
+  {
+    for(String f:args)
+    {
+      File file=new File(f);
+      if(file.exists())
+      {
+        if(f.endsWith(".txt")) file.delete();
+        else System.out.println("Name="+file.getName()+" Path="+file.getAbsolutePath()+" Size="+file.length());
+      }
+    }
+  }
+}
+
+/*
+cmd:
+javac DeleteTxt.java
+java DeleteTxt file1.txt file2.doc file3.pdf
+*/
+
+
+
+
+
+
+
+
+
+
+// Q2 - ListTxt.java
+import java.io.*;
+
+class ListTxt
+{
+  public static void main(String args[])
+  {
+    File dir=new File(args[0]);
+    String files[]=dir.list();
+    for(String f:files) if(f.endsWith(".txt")) System.out.println(f);
+  }
+}
+
+/*
+cmd:
+javac ListTxt.java
+java ListTxt C:\\Users\\YourName\\Documents
+*/
+
+
+
+
+
+
+
+
+
+
+// Q3 - CountFile.java
+import java.io.*;
+import java.util.*;
+
+class CountFile
+{
+  public static void main(String args[]) throws Exception
+  {
+    int lines=0,words=0,chars=0;
+    Scanner sc=new Scanner(new File(args[0]));
+    while(sc.hasNextLine())
+    {
+      String l=sc.nextLine();
+      lines++;
+      chars+=l.length();
+      words+=l.split("\\s+").length;
+    }
+    sc.close();
+    System.out.println("Lines="+lines+" Words="+words+" Characters="+chars);
+  }
+}
+
+/*
+cmd:
+javac CountFile.java
+java CountFile input.txt
+*/
+
+
+
+
+
+
+
+
+
+
+// Q4 - ReverseCase.java
+import java.io.*;
+
+class ReverseCase
+{
+  public static void main(String args[]) throws Exception
+  {
+    FileReader fr=new FileReader(args[0]);
+    int ch;
+    while((ch=fr.read())!=-1)
+    {
+      char c=(char)ch;
+      if(Character.isLetter(c))
+      {
+        if(Character.isUpperCase(c)) System.out.print(Character.toLowerCase(c));
+        else System.out.print(Character.toUpperCase(c));
+      }
+      else if(Character.isDigit(c)) System.out.print("[Digit]");
+      else if(Character.isSpaceChar(c)) System.out.print("[Space]");
+      else System.out.print(c);
+    }
+    fr.close();
+  }
+}
+
+/*
+cmd:
+javac ReverseCase.java
+java ReverseCase input.txt
+*/
+
+
+
+
+
+
+
+
+
+
+// Q5 - ValidateData.java
+class InvalidDataException extends Exception
+{ InvalidDataException(String m){ super(m);} }
+
+class ValidateData
+{
+  public static void main(String args[])
+  {
+    try
+    {
+      String pan=args[0];
+      String mob=args[1];
+      if(!pan.matches("[A-Z]{5}[0-9]{4}[A-Z]{1}")) throw new InvalidDataException("Invalid Data");
+      if(!mob.matches("[0-9]{10}")) throw new InvalidDataException("Invalid Data");
+      System.out.println("PAN="+pan+" Mobile="+mob);
+    }
+    catch(InvalidDataException e){ System.out.println(e.getMessage()); }
+  }
+}
+
+/*
+cmd:
+javac ValidateData.java
+java ValidateData ABCDE1234F 9876543210
+*/
