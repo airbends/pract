@@ -1,0 +1,158 @@
+// Q1 - CopyFile.java
+import java.io.*;
+
+class CopyFile
+{
+  public static void main(String args[]) throws Exception
+  {
+    FileReader fr=new FileReader(args[0]);
+    FileWriter fw=new FileWriter(args[1]);
+    int ch;
+    while((ch=fr.read())!=-1)
+    {
+      char c=(char)ch;
+      if(Character.isDigit(c)) fw.write('*');
+      else if(Character.isUpperCase(c)) fw.write(Character.toLowerCase(c));
+      else if(Character.isLowerCase(c)) fw.write(Character.toUpperCase(c));
+      else fw.write(c);
+    }
+    fr.close(); fw.close();
+    System.out.println("File Copied");
+  }
+}
+
+/*
+cmd:
+javac CopyFile.java
+java CopyFile input.txt output.txt
+*/
+
+
+
+
+
+
+
+
+
+
+// Q2 - WriteASCII.java
+import java.io.*;
+
+class WriteASCII
+{
+  public static void main(String args[]) throws Exception
+  {
+    String s=args[0];
+    FileWriter fw=new FileWriter("ascii.txt");
+    for(int i=0;i<s.length();i++) fw.write(s.charAt(i)+"="+(int)s.charAt(i)+"\n");
+    fw.close();
+    System.out.println("ASCII values written");
+  }
+}
+
+/*
+cmd:
+javac WriteASCII.java
+java WriteASCII Hello
+*/
+
+
+
+
+
+
+
+
+
+
+// Q3 - Fact.java
+class SmallException extends Exception{ SmallException(String m){super(m);} }
+class LargeException extends Exception{ LargeException(String m){super(m);} }
+
+class Fact
+{
+  static int fact(int n){ return (n<=1)?1:n*fact(n-1); }
+
+  public static void main(String args[])
+  {
+    try
+    {
+      int n=Integer.parseInt(args[0]);
+      if(n<5) throw new SmallException("Number is small");
+      if(n>10) throw new LargeException("Number is Greater");
+      System.out.println("Factorial="+fact(n));
+    }
+    catch(SmallException|LargeException e){ System.out.println(e.getMessage()); }
+  }
+}
+
+/*
+cmd:
+javac Fact.java
+java Fact 7
+*/
+
+
+
+
+
+
+
+
+
+
+// Q4 - ReverseFile.java
+import java.io.*;
+
+class ReverseFile
+{
+  public static void main(String args[]) throws Exception
+  {
+    File f=new File(args[0]);
+    FileReader fr=new FileReader(f);
+    char c[]=new char[(int)f.length()];
+    fr.read(c); fr.close();
+    for(int i=c.length-1;i>=0;i--) System.out.print(c[i]);
+  }
+}
+
+/*
+cmd:
+javac ReverseFile.java
+java ReverseFile input.txt
+*/
+
+
+
+
+
+
+
+
+
+
+// Q5 - WordReverse.java
+import java.io.*;
+import java.util.*;
+
+class WordReverse
+{
+  public static void main(String args[]) throws Exception
+  {
+    Scanner sc=new Scanner(new File(args[0]));
+    while(sc.hasNext())
+    {
+      String w=sc.next();
+      StringBuffer sb=new StringBuffer(w);
+      System.out.println(sb.reverse());
+    }
+    sc.close();
+  }
+}
+
+/*
+cmd:
+javac WordReverse.java
+java WordReverse input.txt
+*/
