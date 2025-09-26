@@ -1,0 +1,158 @@
+// Q1 - GreetUser.java
+import java.io.*;
+
+class GreetUser
+{
+  public static void main(String args[]) throws Exception
+  {
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    System.out.print("Enter your name: ");
+    String name=br.readLine();
+    System.out.println("Hello, "+name.toUpperCase()+", nice to meet you!");
+  }
+}
+
+/*
+cmd:
+javac GreetUser.java
+java GreetUser
+*/
+
+
+
+
+
+
+
+
+
+
+// Q2 - WordSplit.java
+import java.io.*;
+
+class WordSplit
+{
+  public static void main(String args[]) throws Exception
+  {
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Enter a line:");
+    String line=br.readLine().toLowerCase();
+    String w="";
+    for(int i=0;i<line.length();i++)
+    {
+      char c=line.charAt(i);
+      if(Character.isLetter(c)) w+=c;
+      else{ if(!w.equals("")){System.out.println(w); w="";} }
+    }
+    if(!w.equals("")) System.out.println(w);
+  }
+}
+
+/*
+cmd:
+javac WordSplit.java
+java WordSplit
+*/
+
+
+
+
+
+
+
+
+
+
+// Q3 - SortNumbers.java
+import java.io.*;
+import java.util.*;
+
+class SortNumbers
+{
+  public static void main(String args[]) throws Exception
+  {
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    double arr[]=new double[100]; int n=0;
+    while(true)
+    {
+      double x=Double.parseDouble(br.readLine());
+      if(x==0) break; arr[n++]=x;
+    }
+    Arrays.sort(arr,0,n);
+    for(int i=0;i<n;i++) System.out.println(arr[i]);
+  }
+}
+
+/*
+cmd:
+javac SortNumbers.java
+java SortNumbers
+*/
+
+
+
+
+
+
+
+
+
+
+// Q4 - MouseKeyApplet.java
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+
+/* <applet code=MouseKeyApplet width=400 height=300></applet> */
+
+public class MouseKeyApplet extends Applet implements MouseMotionListener,KeyListener
+{
+  int x,y; String msg="";
+  public void init(){ addMouseMotionListener(this); addKeyListener(this); }
+  public void mouseDragged(MouseEvent e){}
+  public void mouseMoved(MouseEvent e){ x=e.getX(); y=e.getY(); repaint(); }
+  public void keyPressed(KeyEvent e){ msg="Key Pressed"; repaint(); }
+  public void keyReleased(KeyEvent e){}
+  public void keyTyped(KeyEvent e){}
+  public void paint(Graphics g){ g.drawString("X="+x+" Y="+y,20,40); g.drawString(msg,20,60); }
+}
+
+/*
+cmd:
+javac MouseKeyApplet.java
+appletviewer MouseKeyApplet.java
+*/
+
+
+
+
+
+
+
+
+
+
+// Q5 - SimpleLayout.java
+import javax.swing.*;
+import java.awt.*;
+
+class SimpleLayout
+{
+  public static void main(String args[])
+  {
+    JFrame f=new JFrame("Layout Example");
+    f.setSize(400,300);
+    f.setLayout(new FlowLayout());
+    f.add(new JLabel("Name:")); f.add(new JTextField(10));
+    f.add(new JLabel("Email:")); f.add(new JTextField(10));
+    f.add(new JButton("Submit"));
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setVisible(true);
+  }
+}
+
+/*
+cmd:
+javac SimpleLayout.java
+java SimpleLayout
+*/
